@@ -1,6 +1,8 @@
 require 'stringio'
 require 'net/http'
 
+#TODO: stop returning nils and raise exceptions!
+
 #
 # References for image formats:
 # http://en.wikipedia.org/wiki/Graphics_Interchange_Format
