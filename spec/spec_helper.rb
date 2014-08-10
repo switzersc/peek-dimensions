@@ -6,8 +6,10 @@ require 'ext/net_http'
 
 module PeekDimensionsSpecHelper
   KNOWN_DIMENSIONS = {
-    'jpg/sample-1.jpg' => [471, 274]
-
+    'jpg/sample-1.jpg' => [471, 274],
+    'gif/sample-1.gif' => [400, 214],
+    'bmp/sample-1.bmp' => [1419, 1001],
+    'png/sample-1.png' => [1000, 1000]
   }
 
   def fixture_path(fixture_sub_path)

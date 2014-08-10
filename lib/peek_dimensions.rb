@@ -32,7 +32,7 @@ class PeekDimensions
   def read_dimensions(uri)
     parsed_uri = uri.kind_of?(URI) ? uri : URI.parse(uri)
     http = Net::HTTP.new(parsed_uri.host)
-    
+
     http.request_get(parsed_uri.path) do |response|
       response.read_body do |chunk|
         # append chunk to the end of io and return io.pos to its last location
@@ -67,9 +67,11 @@ class PeekDimensions
 
   def read_unknown
     img_str = @io.string
+
     if    img_str[0,2] == "\xFF\xD8"         then @read_handler = :read_jpeg
     elsif img_str[0,4] == "\x47\x49\x46\x38" then @read_handler = :read_gif
     elsif img_str[0,2] == "\x42\x4D"         then @read_handler = :read_bmp
+    elsif img_str[0,2] == "\x89"             then @read_handler = :read_png
     end
 
     read_dimensions_handler unless @read_handler == :read_unknown
